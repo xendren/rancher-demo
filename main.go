@@ -194,6 +194,9 @@ func fail(w http.ResponseWriter, r *http.Request) {
 	waitGroup.Add(1)
 	defer waitGroup.Done()
 
+	// add a false delay
+	time.Sleep(2 * time.Second)
+
 	w.Header().Set("Connection", "close")
 	w.WriteHeader(http.StatusInternalServerError)
 }
@@ -201,6 +204,9 @@ func fail(w http.ResponseWriter, r *http.Request) {
 func missing(w http.ResponseWriter, r *http.Request) {
 	waitGroup.Add(1)
 	defer waitGroup.Done()
+
+	// add a false delay
+	time.Sleep(2 * time.Second)
 
 	w.Header().Set("Connection", "close")
 	w.WriteHeader(http.StatusNotFound)
