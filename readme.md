@@ -4,7 +4,7 @@ This is a Go demo application used for demonstrating Kubernetes and load balanci
 
 It will create a colored icon for each replica within a ReplicaSet and indicate which one
 most recently served a response. Replicas which haven't been heard from will begin to fade
-out, until after a configurable number of seconds they will disappear. This is useful for 
+out, until after a configurable number of seconds they will disappear. This is useful for
 demonstrating scaling up/down or in the case of an application like [Rio](https://rio.io),
 for showing scale-in of an upgraded application.
 
@@ -33,3 +33,10 @@ for showing scale-in of an upgraded application.
 ## Build
 
 `docker build -t monachus/rancher-demo .`
+
+## Paths
+
+By default the loaded page will reach back to `/demo` every `REFRESH_INTERVAL` and use the returned information to update the display. Other paths are:
+
+- `/info` - returns some additional information about the replica serving the request
+- `/load` - adds a 2s delay to the response from `/info` - use this for putting artificial load on the system and watching the replicas scale
