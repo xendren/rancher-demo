@@ -190,6 +190,28 @@ func load(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func fail(w http.ResponseWriter, r *http.Request) {
+	waitGroup.Add(1)
+	defer waitGroup.Done()
+
+	// add a false delay
+	time.Sleep(2 * time.Second)
+
+	w.Header().Set("Connection", "close")
+	w.WriteHeader(http.StatusInternalServerError)
+}
+
+func missing(w http.ResponseWriter, r *http.Request) {
+	waitGroup.Add(1)
+	defer waitGroup.Done()
+
+	// add a false delay
+	time.Sleep(2 * time.Second)
+
+	w.Header().Set("Connection", "close")
+	w.WriteHeader(http.StatusNotFound)
+}
+
 func ping(w http.ResponseWriter, r *http.Request) {
 	waitGroup.Add(1)
 	defer waitGroup.Done()
@@ -275,6 +297,8 @@ func main() {
 		mux.Handle("/demo", counter(http.HandlerFunc(ping)))
 		mux.Handle("/info", counter(http.HandlerFunc(info)))
 		mux.Handle("/load", counter(http.HandlerFunc(load)))
+		mux.Handle("/fail", counter(http.HandlerFunc(fail)))
+		mux.Handle("/404", counter(http.HandlerFunc(missing)))
 		mux.Handle("/", counter(http.HandlerFunc(index)))
 
 		hostname := getHostname()
