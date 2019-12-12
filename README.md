@@ -40,3 +40,7 @@ By default the loaded page will reach back to `/demo` every `REFRESH_INTERVAL` a
 
 - `/info` - returns some additional information about the replica serving the request
 - `/load` - adds a 2s delay to the response from `/info` - use this for putting artificial load on the system and watching the replicas scale
+
+## Ports
+
+The container will listen for traffic on port 80.
