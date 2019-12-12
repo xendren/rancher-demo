@@ -43,4 +43,4 @@ By default the loaded page will reach back to `/demo` every `REFRESH_INTERVAL` a
 
 ## Ports
 
-The container will listen for traffic on port 80.
+The container will listen for traffic on port 8080.

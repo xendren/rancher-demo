@@ -270,10 +270,10 @@ func counter(h http.Handler) http.Handler {
 
 func main() {
 	app := cli.NewApp()
-	app.Name = "docker-demo"
-	app.Usage = "docker demo application"
-	app.Version = "1.0.1"
-	app.Author = "@ehazlett"
+	app.Name = "rancher-demo"
+	app.Usage = "rancher demo application"
+	app.Version = "1.4.1"
+	app.Author = "@oskapt"
 	app.Email = ""
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
