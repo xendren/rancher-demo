@@ -1,0 +1,12 @@
+# This is a file to use with [Rancher Rio](https://rio.io)
+
+services:
+  rancher-demo:
+    image: ./
+    ports: 80:8080/http
+    env:
+    - COW_COLOR=pink
+    autoscale:
+      concurrency: 10
+      maxReplicas: 5
+      minReplicas: 1
