@@ -2,11 +2,19 @@
 
 services:
   rancher-demo:
-    image: ./
+    app: rancher-demo
+    version: v0
     ports: 80:8080/http
     env:
-    - COW_COLOR=yellow
+    - COW_COLOR=pink
     autoscale:
       concurrency: 10
       maxReplicas: 5
       minReplicas: 1
+    build:
+      branch: master
+      pr: true
+      repo: https://github.com/oskapt/rancher-demo
+      webhookSecretName: githubtoken
+    template: true
+
