@@ -44,3 +44,9 @@ By default the loaded page will reach back to `/demo` every `REFRESH_INTERVAL` a
 ## Ports
 
 The container will listen for traffic on port 8080.
+
+## Running
+
+1. Edit `base/configs/source-vars.yaml` and set the following:
+    - `MY_NAMESPACE`: the namespace into which the app will be deployed (default: `rancher-demo`). This will be created if it does not already exist.
+    - `URL_HOST`: the hostname portion of the URL that the ingress will answer on (default: `rancher-demo.cl.monach.us`)
