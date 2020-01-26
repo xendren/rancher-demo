@@ -11,6 +11,5 @@ COPY app/static /static
 COPY --from=app /go/src/app/docker-demo /bin/docker-demo
 COPY app/templates /templates
 ENV COW_COLOR yellow
-COPY templates /templates
 EXPOSE 8080
 ENTRYPOINT ["/bin/docker-demo"]
