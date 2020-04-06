@@ -78,7 +78,7 @@
                                 console.log("creating instance " + instanceName);
 
                                 // create a shorter display name for the tile
-                                var displayName = instanceName.match(/.+-(\w+)$/)[1];
+                                var displayName = instanceName.match(/.+-(\w+)$/);
                                 if (displayName === null) {
                                     displayName = instanceName;
                                 }
