@@ -1,0 +1,41 @@
+# Set FROM image as starting point
+FROM golang:1.12-alpine as app
+
+# Set some maintainer info
+MAINTAINER Your Name &lt;yourname@yourcompany.com&gt;
+
+# Install prerequisites into the image
+RUN apk add -U build-base git
+
+# Add files
+COPY app /go/src/app
+
+# Set the working directory
+WORKDIR /go/src/app
+
+# Set environment
+ENV GO111MODULE=on
+
+# Build the application
+RUN go build -mod=vendor -a -v -tags 'netgo' -ldflags '-w -extldflags -static' -o docker-demo .
+
+# Now create a base image and just include the compiled code
+# Set FROM image as starting point 
+FROM alpine:latest
+
+# Install prerequisites into the image
+RUN apk add -U --no-cache curl
+
+# Add files
+COPY app/static /static
+COPY --from=app /go/src/app/docker-demo /bin/docker-demo
+COPY app/templates /templates
+
+# Set environment
+ENV COW_COLOR red
+
+# Expose the port for the application
+EXPOSE 8080
+
+# Set the entrypoint for the application
+ENTRYPOINT ["/bin/docker-demo"]
